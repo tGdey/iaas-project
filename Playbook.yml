@@ -1,0 +1,121 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+    - name: install base packages
+      apt: pkg={{item}} state=present update_cache=yes
+      with_items:
+       - git
+       - vim
+      tags:
+       - base
+    - name: Install R
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - r-base
+      tags:
+       - R
+    - name: Install Python
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - python-dev
+      tags:
+       - Python
+    - name: Install SQL Server
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - mysql-server
+      tags:
+       - sqlserver
+    - name: Install - php
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - php5
+      tags:
+       - php
+    - name: Install Okta
+      apt: 
+      deb: dpkg -i OktaLDAPAgent_xx.xx.xx_amd64.deb
+      tags:
+       - Okta
+    - name: Install Unity
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - unity
+      tags:
+       - Unity
+    - name: Install Ruby
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - ruby-dev
+      tags:
+       - Ruby
+    - name: Install .NET
+      apt:
+      deb: dpkg -i libicu52_52.1-3ubuntu0.4_amd64.deb
+      tags:
+       - net2
+    - name: Install Weka
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - weka
+      tags:
+       - Weka
+    - name: Install Apache Drill
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - apache2
+      tags:
+       - Apache2
+    - name: Install Centrify
+      apt: 
+      deb: centrify
+      tags:
+       - Centrify
+    - name: Install React Native with dependant
+      apt: pkg={{ item }} state=latest
+      with_items:
+       - nodejs
+      tags:
+       - React Native
+    - name: Install Zscaler
+      apt:
+      pkg: ffoo.crt /usr/local/share/ca-certificates/foo.crt
+      tags:
+       - zscaler
+    - name: Install ClipherCloud
+      apt: 
+      deb: cliphercloud # -
+      tags:
+       - ClipherCloud
+    - name: Install IOS SDK
+      apt: 
+      deb: iossdk  #(inprogress)
+      tags:
+       - IOS SDK
+    - name: Install Andriod SDK
+      apt:
+      deb: andriodsdk #(inprogress)
+      tags:
+       - Andriod SDK
+    - name: Install Xamarin
+      apt:
+      deb: xamarin # (inprogress)
+      tags:
+       - Xamarin
+    - name: Install IOS
+      apt: 
+      deb: IOS
+      tags:
+       - IOS
+    - name: Install DocTrackr
+      apt:
+      deb: doctrackr #(inprogress)
+      tags:
+      - DocTrackr
+    - name: Install Vaultive
+      apt:
+      deb: vaultive #(inprogress)
+      tags:
+       - Vaultive
